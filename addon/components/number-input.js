@@ -24,18 +24,22 @@ export default InputMaskComponent.extend({
   mask: 'integer',
 
   // Default options
-  decimal:   false,
-  group:     false,
-  separator: ',',
-  radix:     '.',
-  groupSize: '3',
+  decimal:    false,
+  group:      false,
+  separator:  ',',
+  radix:      '.',
+  groupSize:  '3',
+  allowMinus: true,
+  allowPlus:  true,
 
   updateMask: function() {
     this.setProperties({
       'options.autoGroup':      this.get('group'),
       'options.groupSeparator': this.get('separator'),
       'options.radixPoint':     this.get('radix'),
-      'options.groupSize':      this.get('groupSize')
+      'options.groupSize':      this.get('groupSize'),
+      'options.allowMinus':     this.get('allowMinus'),
+      'options.allowPlus':      this.get('allowPlus')
     });
 
     if (this.get('decimal') === true) {
@@ -56,6 +60,8 @@ export default InputMaskComponent.extend({
     'separator',
     'radix',
     'groupSize',
+    'allowMinus',
+    'allowPlus',
     function() {
       Ember.run.once(this, 'updateMask');
   })
